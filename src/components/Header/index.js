@@ -45,7 +45,7 @@ export const Header = () => {
       <B href="https://github.com/UniversalDataTool/universal-data-tool">
         Github
       </B>
-      <B className="app" href="/app">
+      <B className="app" href="/app/">
         Use Online
       </B>
     </Container>

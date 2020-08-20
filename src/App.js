@@ -158,7 +158,7 @@ function App() {
                 Download
               </HeroButton>
               <HeroButton
-                href="/app"
+                href="/app/"
                 variant="outlined"
                 className={"useonline"}
               >
