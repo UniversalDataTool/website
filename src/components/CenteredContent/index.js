@@ -8,7 +8,7 @@ const ContentContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
 }))
 const Content = styled(Box)(({ theme }) => ({
-  width: "calc(100% - 32px)",
+  width: "calc(100% - 128px)",
   maxWidth: 1000,
 }))
 

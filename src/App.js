@@ -6,6 +6,8 @@ import Header from "./components/Header"
 import CenteredContent from "./components/CenteredContent"
 import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
+import Grid from "@material-ui/core/Grid"
+import sampleGridSrc from "./assets/sample_grid.png"
 
 import EmojiFoodBeverageIcon from "@material-ui/icons/EmojiFoodBeverage"
 import GetAppIcon from "@material-ui/icons/GetApp"
@@ -76,6 +78,38 @@ const SectionText = styled("div")({
   color: colors.grey[400],
   fontSize: 20,
   lineHeight: 1.5,
+})
+
+const SampleGridImage = styled("img")({
+  position: "absolute",
+  width: 500,
+  overflow: "hidden",
+  borderRadius: 8,
+  top: 120,
+  left: "calc(50% + 100px)",
+  boxShadow: "-8px 8px 64px rgba(0,0,0,0.5)",
+  transform: "rotate3d(1,1,1,-60deg)",
+})
+
+const ItemContainer = styled("div")({
+  paddingTop: 48,
+})
+const Item = styled("div")({
+  marginTop: 48,
+  paddingLeft: 16,
+  borderLeft: "2px solid #0044a9",
+})
+const ItemHeader = styled("div")({
+  fontSize: 24,
+  fontWeight: 700,
+  color: "#fff",
+})
+const ItemDescription = styled("div")({
+  paddingTop: 16,
+  fontSize: 16,
+  fontWeight: 500,
+  lineHeight: 1.5,
+  color: colors.grey[500],
 })
 
 function App() {
@@ -151,10 +185,143 @@ function App() {
               any powerful developer features and integrations.
             </SectionText>
           </CenteredContent>
+          <Box
+            position="relative"
+            overflow="hidden"
+            width="100%"
+            minHeight={600}
+          >
+            <CenteredContent>
+              <Grid container>
+                <Grid item xs={6}>
+                  <ItemContainer>
+                    <Item>
+                      <ItemHeader>Easy/No Install</ItemHeader>
+                      <ItemDescription>
+                        Use the Universal Data Tool directly from a web browser
+                        or with a Windows, Mac or Linux desktop application.
+                      </ItemDescription>
+                    </Item>
+                    <Item>
+                      <ItemHeader>Real-time Collaboration</ItemHeader>
+                      <ItemDescription>
+                        Join a link to a collaborative session and see dataset
+                        samples from team members complete in real time.
+                      </ItemDescription>
+                    </Item>
+                    <Item>
+                      <ItemHeader>Easy Import from AWS</ItemHeader>
+                      <ItemDescription>
+                        Import from your S3 buckets easily with IAM or Cognito
+                        authentication.
+                      </ItemDescription>
+                    </Item>
+                  </ItemContainer>
+                </Grid>
+                <Grid item xs={6}></Grid>
+              </Grid>
+            </CenteredContent>
+            <SampleGridImage src={sampleGridSrc} />
+          </Box>
         </Section2>
-        <Section3>{/*  */}</Section3>
-        <Section2>{/*  */}</Section2>
-        <Section3>{/*  */}</Section3>
+        <Section3>
+          <CenteredContent>
+            <Category>Community</Category>
+            <SectionHeader>Built Community-First</SectionHeader>
+            <SectionText>
+              Working together, we can accomplish more. The Universal Data Tool
+              was built to bring together the best ideas from different machine
+              learning communities. Check out our{" "}
+              <L href="https://universaldatatool.slack.com">Slack</L>,{" "}
+              <L href="https://github.com/UniversalDataTool/universal-data-tool/blob/master/CONTRIBUTING.md">
+                Contribution Guide
+              </L>{" "}
+              and{" "}
+              <L href="https://www.youtube.com/playlist?list=PLy9z5rqheGWLDN2zWekdzsqZMneQ6eYyJ">
+                Community Update Video Series
+              </L>
+              .
+            </SectionText>
+            <Box textAlign="center" paddingTop="96px" paddingBottom="96px">
+              <iframe
+                width="711"
+                height="400"
+                src="https://www.youtube.com/embed/uQ1ITe88TM8"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </Box>
+          </CenteredContent>
+          <Box height={60} />
+        </Section3>
+        <Section2>
+          <CenteredContent>
+            <Category>Training</Category>
+            <SectionHeader>
+              Train your labelers with <L href="/courses">Courses</L>
+            </SectionHeader>
+            <SectionText>
+              Upload your dataset to <L href="/courses">Courses</L> to create a
+              training course. Testing and exercises validate that your
+              workforce knows exactly how the data should be labeled.
+            </SectionText>
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <ItemContainer>
+                  <Item>
+                    <ItemHeader>Totally Free, No Sign Up</ItemHeader>
+                    <ItemDescription>
+                      Get started in less than a minute. Courses uses
+                      administrator links. No sign up needed.
+                    </ItemDescription>
+                  </Item>
+                  <Item>
+                    <ItemHeader>View Certified Labelers</ItemHeader>
+                    <ItemDescription>
+                      View all labelers that have passed, or programmatically
+                      query and integrate certification into your workforce
+                      system.
+                    </ItemDescription>
+                  </Item>
+                  <Item>
+                    <ItemHeader>Create Tests and Exercises</ItemHeader>
+                    <ItemDescription>
+                      Create testing where labelers must match the Intersection
+                      over Union error of a segmentation, classifications and
+                      more.
+                    </ItemDescription>
+                  </Item>
+                </ItemContainer>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Box textAlign="center" paddingTop="160px">
+                  <iframe
+                    width="444"
+                    height="250"
+                    src="https://www.youtube.com/embed/2XXENmAIyzE"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </Box>
+              </Grid>
+            </Grid>
+          </CenteredContent>
+          <Box height={140} />
+        </Section2>
+        <Section3>
+          <CenteredContent>
+            <Category>Jupyter</Category>
+            <SectionHeader>
+              Label data directly in Jupyter Notebook
+            </SectionHeader>
+            <SectionText>
+              Import the Universal Data Tool pip module to label data, create
+              collaborative sessions and transform datasets.
+            </SectionText>
+          </CenteredContent>
+        </Section3>
       </Container>
     </Theme>
   )
