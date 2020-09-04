@@ -38,6 +38,7 @@ export const Header = () => {
         <The>UDT</The>
       </Text>
       <Box flexGrow={1} />
+      <B href="/convert">Convert</B>
       <B href="/courses">Courses</B>
       <B href="https://www.youtube.com/playlist?list=PLy9z5rqheGWLDN2zWekdzsqZMneQ6eYyJ">
         Contributor Video Series
