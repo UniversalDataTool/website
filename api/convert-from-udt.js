@@ -1,5 +1,4 @@
 const { send, json } = require("micro")
-const uuid = require("uuid")
 const getConversionTasks = require("../lib/get-conversion-tasks.js")
 const doConversionTask = require("../lib/do-conversion-task.js")
 const query = require("micro-query")
@@ -15,7 +14,7 @@ module.exports = async (req, res) => {
         return
       }
 
-      const job_id = uuid.v4()
+      const job_id = Math.random().toString(36).slice(-8)
 
       const tasks = getConversionTasks({ udt, job_id, desired_output })
 
