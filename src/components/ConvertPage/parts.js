@@ -32,6 +32,7 @@ export const Selectable = styled(Button)({
   backgroundColor: "#0062f4",
   "&:hover": {
     backgroundColor: "#0062f4",
+    opacity: 0.8,
   },
 })
 export const DidYouKnow = styled("div")({
@@ -126,4 +127,32 @@ export const Error = styled("div")({
   "&:hover": {
     opacity: 0.5,
   },
+})
+
+export const ConversionProgressContainer = styled("div")({
+  position: "relative",
+  width: 280,
+  height: 280,
+  overflow: "hidden",
+})
+export const ConversionItem = styled("div")({
+  position: "absolute",
+  left: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  padding: 16,
+  opacity: 0,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  transition: "opacity 200ms, transform 200ms",
+  transform: "translate(0,-20px)",
+  "&.show": {
+    opacity: 1,
+    transform: "translate(0,0)",
+  },
+  "&.progressbarcontainer": {},
+  "&.task": {},
 })

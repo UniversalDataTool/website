@@ -8,10 +8,12 @@ import * as parts from "./parts"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { useDropzone } from "react-dropzone"
 import useEventCallback from "use-event-callback"
+import DownloadIcon from "@material-ui/icons/GetApp"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
 import useConverter from "../../hooks/use-converter"
 import VisualDropdown from "../VisualDropdown"
+import jac from "jac-format"
 
 export const ConvertPage = () => {
   const [selectOutputFormatOpen, setSelectOutputFormatOpen] = useState(false)
@@ -22,7 +24,15 @@ export const ConvertPage = () => {
   const [error, setError] = useState(null)
   const [inputFormat, setInputFormat] = useState("UDT JSON")
   const [outputFormat, setOutputFormat] = useState("Mask PNGs")
-  const { progress, conversionRunning, startConversion } = useConverter()
+  const {
+    progress,
+    conversionRunning,
+    startConversion,
+    downloadUrl,
+    task,
+    resetConversion,
+    error: conversionError,
+  } = useConverter()
   const onDrop = useEventCallback((acceptedFiles) => {
     setLoading(true)
     const reader = new FileReader()
@@ -36,7 +46,11 @@ export const ConvertPage = () => {
     }
     reader.onload = () => {
       try {
-        startConversion(JSON.parse(reader.result))
+        if (inputFormat === "UDT JSON") {
+          startConversion(JSON.parse(reader.result), outputFormat)
+        } else if (inputFormat === "UDT CSV") {
+          startConversion(jac.fromCSV(reader.result), outputFormat)
+        }
       } catch (e) {
         setError(e.toString())
         setLoading(false)
@@ -80,6 +94,7 @@ export const ConvertPage = () => {
             <KeyboardArrowDown className="icon" />
           </parts.Selectable>
         </parts.Hero>
+
         <parts.DidYouKnow className={frames}>
           <span className="didyouknow">Did you know?</span> You can run any of
           these{" "}
@@ -91,20 +106,44 @@ export const ConvertPage = () => {
         {error && (
           <parts.Error onClick={() => setError(null)}>{error}</parts.Error>
         )}
+        {conversionError && (
+          <parts.Error onClick={() => setError(null)}>
+            {conversionError}
+          </parts.Error>
+        )}
         <parts.ConvertContainer>
-          <parts.ConverterBox className={frames} {...getRootProps()}>
+          <parts.ConverterBox
+            className={frames}
+            {...(!downloadUrl
+              ? getRootProps()
+              : {
+                  onClick: () => {
+                    window.location.href = downloadUrl
+                  },
+                })}
+          >
             <input {...getInputProps()} />
             <div>
               {conversionRunning ? (
-                <CircularProgressbar
-                  value={progress * 100}
-                  text={`${Math.floor(progress * 100)}%`}
-                  styles={buildStyles({
-                    textColor: "#fff",
-                    pathColor: "#fff",
-                    trailColor: "rgba(255,255,255,0.5)",
-                  })}
-                />
+                <parts.ConversionProgressContainer>
+                  <parts.ConversionItem className={!downloadUrl ? "show" : ""}>
+                    <div className="progressbarcontainer">
+                      <CircularProgressbar
+                        value={progress * 100}
+                        text={`${Math.floor(progress * 100)}%`}
+                        styles={buildStyles({
+                          textColor: "#fff",
+                          pathColor: "#fff",
+                          trailColor: "rgba(255,255,255,0.5)",
+                        })}
+                      />
+                    </div>
+                    <div className="task">{task}</div>
+                  </parts.ConversionItem>
+                  <parts.ConversionItem className={downloadUrl ? "show" : ""}>
+                    <DownloadIcon className="icon" />
+                  </parts.ConversionItem>
+                </parts.ConversionProgressContainer>
               ) : !loading ? (
                 <InsertDriveFileIcon className={{ icon: true, isDragActive }} />
               ) : (
@@ -117,6 +156,19 @@ export const ConvertPage = () => {
             Drag and drop file here, or click to select a udt.json or udt.csv
             file
           </parts.ArrowToConvertBox>
+          {downloadUrl && (
+            <div>
+              <parts.Selectable
+                onClick={() => {
+                  resetConversion()
+                  setLoading(false)
+                }}
+                style={{ paddingRight: 24 }}
+              >
+                Reset
+              </parts.Selectable>
+            </div>
+          )}
         </parts.ConvertContainer>
       </CenteredContent>
       <VisualDropdown
