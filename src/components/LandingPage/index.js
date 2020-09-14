@@ -38,7 +38,7 @@ const HeroSubtitle = styled("div")({
   marginTop: 48,
   color: colors.grey[400],
   textAlign: "center",
-  maxWidth: "70%",
+  maxWidth: "80%",
   lineHeight: 1.5,
 })
 const HeroButton = styled(Button)({
@@ -132,14 +132,13 @@ function LandingPage() {
             <HeroSubtitle>
               An{" "}
               <L href="https://github.com/UniversalDataTool/universal-data-tool">
-                open-source tool
+                open-source tool and library
               </L>{" "}
               for creating and labeling datasets of images, audio, text,
               documents and video in an{" "}
               <L href="https://github.com/UniversalDataTool/udt-format">
                 open data format
               </L>
-              .
             </HeroSubtitle>
           </Box>
           <Box

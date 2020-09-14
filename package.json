@@ -22,14 +22,13 @@
     "react-scripts": "3.4.3",
     "react-use": "^15.3.3",
     "redis": "^3.0.2",
-    "udt-to-png": "^0.0.7",
+    "udt-to-png": "^0.1.0",
     "udt-to-svg": "^0.0.4",
     "use-event-callback": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:now": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && npm run build",
     "test": "ava tests/**/*.js",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
