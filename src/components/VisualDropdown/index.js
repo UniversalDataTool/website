@@ -2,14 +2,31 @@ import React, { useMemo, useState, useRef } from "react"
 import * as parts from "./parts"
 import ImageIcon from "@material-ui/icons/Image"
 import { useInterval, useClickAway } from "react-use"
+import TextFieldsIcon from "@material-ui/icons/TextFields"
+import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline"
 
 const IconForOption = ({ option }) => {
   if (option.toLowerCase().includes("svg")) {
     return <parts.IconText>{"<svg />"}</parts.IconText>
   }
+  if (
+    option.toLowerCase().includes("csv") ||
+    option.toLowerCase().includes("tsv")
+  ) {
+    return <ViewHeadlineIcon className="icon" />
+  }
+  if (option.toLowerCase().includes("json")) {
+    return <parts.IconText>{"JSON"}</parts.IconText>
+  }
 
-  switch (option) {
-    case "Mask PNGs":
+  switch (option.toLowerCase()) {
+    case "something else": {
+      return <parts.IconText>{"?"}</parts.IconText>
+    }
+    case "text class tsv":
+    case "conll":
+      return <TextFieldsIcon className="icon" />
+    case "mask pngs":
     default:
       return <ImageIcon className="icon" />
   }

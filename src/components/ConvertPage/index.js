@@ -9,11 +9,27 @@ import CircularProgress from "@material-ui/core/CircularProgress"
 import { useDropzone } from "react-dropzone"
 import useEventCallback from "use-event-callback"
 import DownloadIcon from "@material-ui/icons/GetApp"
+import GithubIcon from "@material-ui/icons/GitHub"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
 import useConverter from "../../hooks/use-converter"
 import VisualDropdown from "../VisualDropdown"
 import jac from "jac-format"
+
+const notSupportedOutputFormats = {
+  "UDT CSV": "https://github.com/UniversalDataTool/website/issues/1",
+  "TSV with Labels":
+    "https://github.com/UniversalDataTool/universal-data-tool/issues/301",
+  labelimg:
+    "https://github.com/UniversalDataTool/universal-data-tool/issues/302",
+  labelme: "https://github.com/UniversalDataTool/website/issues/2",
+  CoNLL: "https://github.com/UniversalDataTool/universal-data-tool/issues/303",
+  COCO: "https://github.com/UniversalDataTool/universal-data-tool/issues/282",
+  "PASCAL VOC XML":
+    "https://github.com/UniversalDataTool/universal-data-tool/issues/267",
+  "Something Else":
+    "https://github.com/UniversalDataTool/universal-data-tool/issues/new?title=Support%20Importing/Exporting%20SOMETHING&body=I%27m%20using%20XXX%20for%20YYY,%20and%20it%27d%20sure%20be%20nifty%20if%20I%20could%20get%20the%20UDT%20to...",
+}
 
 export const ConvertPage = () => {
   const [selectOutputFormatOpen, setSelectOutputFormatOpen] = useState(false)
@@ -73,6 +89,8 @@ export const ConvertPage = () => {
     t3(),
   ])
 
+  const isSupportedFormat = !notSupportedOutputFormats[outputFormat]
+
   return (
     <parts.Container>
       <Header />
@@ -114,7 +132,14 @@ export const ConvertPage = () => {
         <parts.ConvertContainer>
           <parts.ConverterBox
             className={frames}
-            {...(!downloadUrl
+            {...(!isSupportedFormat
+              ? {
+                  onClick: () => {
+                    window.location.href =
+                      notSupportedOutputFormats[outputFormat]
+                  },
+                }
+              : !downloadUrl
               ? getRootProps()
               : {
                   onClick: () => {
@@ -145,7 +170,13 @@ export const ConvertPage = () => {
                   </parts.ConversionItem>
                 </parts.ConversionProgressContainer>
               ) : !loading ? (
-                <InsertDriveFileIcon className={{ icon: true, isDragActive }} />
+                isSupportedFormat ? (
+                  <InsertDriveFileIcon
+                    className={{ icon: true, isDragActive }}
+                  />
+                ) : (
+                  <GithubIcon className="icon" />
+                )
               ) : (
                 <CircularProgress size={100} color="#fff" />
               )}
@@ -153,8 +184,9 @@ export const ConvertPage = () => {
           </parts.ConverterBox>
           <parts.ArrowToConvertBox className={{ ...frames, conversionRunning }}>
             <div className="arrow">↑</div>
-            Drag and drop file here, or click to select a udt.json or udt.csv
-            file
+            {isSupportedFormat
+              ? "Drag and drop file here, or click to select a udt.json or udt.csv file"
+              : "The format you selected isn't supported yet. Show that this is something you want by upvoting the github issue!"}
           </parts.ArrowToConvertBox>
           {downloadUrl && (
             <div>
@@ -183,7 +215,19 @@ export const ConvertPage = () => {
         target={outputFormatButton.current}
         open={selectOutputFormatOpen}
         selected={outputFormat}
-        options={["Mask PNGs", "Mask SVGs", "Mask SVGs with Image"]}
+        options={[
+          "Mask PNGs",
+          "Mask SVGs",
+          "Mask SVGs with Image",
+          "UDT CSV",
+          "TSV with Labels",
+          "labelimg",
+          "labelme",
+          "CoNLL",
+          "COCO",
+          "PASCAL VOC XML",
+          "Something Else",
+        ]}
         onSelect={(outputFormat) => setOutputFormat(outputFormat)}
         onClose={() => setSelectOutputFormatOpen(false)}
       />
