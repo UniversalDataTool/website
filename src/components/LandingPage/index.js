@@ -155,7 +155,7 @@ function LandingPage() {
               <GetAppIcon className="icon" />
               Download
             </HeroButton>
-            <HeroButton href="/app/" variant="outlined" className={"useonline"}>
+            <HeroButton href="/app/" variant="outlined" >
               <EmojiFoodBeverageIcon className="icon" />
               Use Online
             </HeroButton>
