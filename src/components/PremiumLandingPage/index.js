@@ -8,9 +8,8 @@ import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
 import Grid from "@material-ui/core/Grid"
 import sampleGridSrc from "../../assets/sample_grid.png"
-import Fade from "@material-ui/core/Fade"
 
-import PlayArrowIcon from "@material-ui/icons/PlayArrow"
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
 import GetAppIcon from "@material-ui/icons/GetApp"
 import GithubIcon from "@material-ui/icons/GitHub"
 import StarIcon from "@material-ui/icons/Star"
@@ -53,35 +52,6 @@ const HeroButton = styled(Button)({
   },
   "&.useonline": {
     backgroundColor: "#0062f4",
-  },
-})
-const PremiumAd = styled("div")({
-  display: "inline-block",
-  backgroundColor: "#0072d7",
-  boxShadow: "0px 3px 8px rgba(0,0,0,0.5)",
-  padding: 16,
-  paddingLeft: 32,
-  paddingRight: 32,
-  borderRadius: 64,
-  marginBottom: 64,
-  "@global @keyframes animateIn": {
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-    },
-  },
-  animationName: "$animateIn",
-  // animation: "$animateIn 1s ease-in-out",
-})
-const AdText = styled("div")({
-  fontSize: 16,
-  color: "#fff",
-  "&&&& a": {
-    color: "#fff",
-    textDecoration: "underline",
-    fontWeight: 500,
   },
 })
 const L = styled("a")({
@@ -143,34 +113,18 @@ const ItemDescription = styled("div")({
 })
 
 function LandingPage() {
-  const [stars, setStars] = useState(null)
-  const [startAnim, setStartAnim] = useState(false)
-  useEffect(() => setTimeout(() => setStartAnim(true), 500), [])
-  useEffect(() => {
-    if (stars !== null) return
-    fetch("https://api.github.com/repos/UniversalDataTool/universal-data-tool")
-      .then((r) => r.json())
-      .then((r) => {
-        setStars(r.stargazers_count)
-      })
-  }, [])
   return (
     <Container>
       <Section1>
         <Header />
         <CenteredContent>
           <HeroTitle>Universal Data Tool</HeroTitle>
+          <HeroTitle style={{ color: "#ffa41b" }}>SCALE EDITION</HeroTitle>
           <Box width="100%" display="flex" justifyContent="center">
             <HeroSubtitle>
-              An{" "}
-              <L href="https://github.com/UniversalDataTool/universal-data-tool">
-                open-source tool and library
-              </L>{" "}
-              for creating and labeling datasets of images, audio, text,
-              documents and video in an{" "}
-              <L href="https://github.com/UniversalDataTool/udt-format">
-                open data format
-              </L>
+              Scale up operations, achieve higher label quality and get top-tier
+              support with the backer-exclusive{" "}
+              <span style={{ color: "#ffa41b" }}>SCALE EDITION</span>
             </HeroSubtitle>
           </Box>
           <Box
@@ -178,37 +132,13 @@ function LandingPage() {
             justifyContent="center"
             marginTop={4}
             flexWrap="wrap"
-            paddingBottom={6}
+            paddingBottom={24}
           >
-            <HeroButton
-              href="https://github.com/UniversalDataTool/universal-data-tool/releases"
-              variant="outlined"
-            >
-              <GetAppIcon className="icon" />
-              Download
-            </HeroButton>
-            <HeroButton href="/app/" variant="outlined">
-              <PlayArrowIcon className="icon" />
-              Use Online
-            </HeroButton>
-            <HeroButton
-              href="https://github.com/UniversalDataTool/universal-data-tool"
-              variant="outlined"
-            >
-              <GithubIcon className="icon" />
-              Become Star {stars ? stars + 1 : "..."}
+            <HeroButton href="/app/" variant="outlined" className={"useonline"}>
+              <AttachMoneyIcon className="icon" />
+              Become a Backer
             </HeroButton>
           </Box>
-          <Fade in={startAnim}>
-            <Box textAlign="center">
-              <PremiumAd>
-                <AdText>
-                  New! Manage label quality and your team with{" "}
-                  <L href="/backer">UDT SCALE EDITION</L>!
-                </AdText>
-              </PremiumAd>
-            </Box>
-          </Fade>
         </CenteredContent>
       </Section1>
       <Section2>
