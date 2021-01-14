@@ -244,18 +244,21 @@ function LandingPage() {
             Train your labelers with <L href="/courses">Courses</L>
           </SectionHeader>
           <SectionText>
-            Upload your dataset to <L href="/courses">Courses</L> to create a
-            training course. Testing and exercises validate that your workforce
-            knows exactly how the data should be labeled.
+            Upload your dataset to a private instance of{" "}
+            <L href="https://github.com/UniversalDataTool/courseware">
+              UDT Courseware
+            </L>{" "}
+            to create a training course. Testing and exercises validate that
+            your workforce knows exactly how the data should be labeled.
           </SectionText>
           <Grid container>
             <Grid item xs={12} sm={6}>
               <ItemContainer>
                 <Item>
-                  <ItemHeader>Totally Free, No Sign Up</ItemHeader>
+                  <ItemHeader>Built-in Training Validation</ItemHeader>
                   <ItemDescription>
-                    Get started in less than a minute. Courses uses
-                    administrator links. No sign up needed.
+                    Datasets can be configured such that Labelers are required
+                    to pass courses before beginning labeling.
                   </ItemDescription>
                 </Item>
                 <Item>
