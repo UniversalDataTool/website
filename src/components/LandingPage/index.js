@@ -204,7 +204,7 @@ function LandingPage() {
               <PremiumAd>
                 <AdText>
                   New! Manage label quality and your team with{" "}
-                  <L href="/backer">UDT SCALE EDITION</L>!
+                  <L href="/scale">UDT SCALE EDITION</L>!
                 </AdText>
               </PremiumAd>
             </Box>

@@ -10,7 +10,7 @@ function App() {
       <>
         {window.location.href.includes("/convert") ? (
           <ConvertPage />
-        ) : window.location.href.includes("/backer") ? (
+        ) : window.location.href.includes("/scale") ? (
           <PremiumLandingPage />
         ) : (
           <LandingPage />

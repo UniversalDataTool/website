@@ -8,6 +8,10 @@ import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
 import Grid from "@material-ui/core/Grid"
 import sampleGridSrc from "../../assets/sample_grid.png"
+import teamImage from "../../assets/scale-screenshots/screenshot1.png"
+import screenshot2 from "../../assets/scale-screenshots/screenshot2.png"
+import screenshot3 from "../../assets/scale-screenshots/screenshot3.png"
+import screenshot5 from "../../assets/scale-screenshots/screenshot5.png"
 
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney"
 import GetAppIcon from "@material-ui/icons/GetApp"
@@ -82,13 +86,30 @@ const SectionText = styled("div")({
 
 const SampleGridImage = styled("img")({
   position: "absolute",
-  width: 500,
+  width: 600,
   overflow: "hidden",
   borderRadius: 8,
   top: 120,
   left: "calc(50% + 100px)",
   boxShadow: "-8px 8px 64px rgba(0,0,0,0.5)",
-  transform: "rotate3d(1,1,1,-60deg)",
+})
+const ScreenshotRowImg = styled("img")({
+  position: "absolute",
+  width: 500,
+  height: 400,
+  objectFit: "cover",
+  overflow: "hidden",
+  borderRadius: 8,
+  top: 120,
+  left: "calc(33% - 50px)",
+  "&:first-child": {
+    left: -100,
+  },
+  "&:last-child": {
+    left: "66%",
+  },
+  boxShadow: "-8px 8px 64px rgba(0,0,0,0.5)",
+  transform: "rotate(-30deg)",
 })
 
 const ItemContainer = styled("div")({
@@ -134,21 +155,25 @@ function LandingPage() {
             flexWrap="wrap"
             paddingBottom={24}
           >
-            <HeroButton href="/app/" variant="outlined" className={"useonline"}>
+            <HeroButton
+              href="mailto:scale@universaldatatool.com"
+              variant="outlined"
+              className={"useonline"}
+            >
               <AttachMoneyIcon className="icon" />
-              Become a Backer
+              Get Access
             </HeroButton>
           </Box>
         </CenteredContent>
       </Section1>
       <Section2>
         <CenteredContent>
-          <Category>Simplicity and Power</Category>
-          <SectionHeader>Easy for everyone</SectionHeader>
+          <Category>Team Support</Category>
+          <SectionHeader>Manage Your Team with Roles</SectionHeader>
           <SectionText>
-            The Universal Data Tool can be used by anyone on your team, no data
-            or programming skills needed. Simplicity without sacrificing any
-            powerful developer features and integrations.
+            Add users as either "Admin", "Reviewer" or "Labeler". Each role
+            provides different access permissions and a custom user interface
+            specialized to their tasks.
           </SectionText>
         </CenteredContent>
         <Box position="relative" overflow="hidden" width="100%" minHeight={600}>
@@ -157,24 +182,24 @@ function LandingPage() {
               <Grid item xs={6}>
                 <ItemContainer>
                   <Item>
-                    <ItemHeader>Easy/No Install</ItemHeader>
+                    <ItemHeader>Login & Role System</ItemHeader>
                     <ItemDescription>
-                      Use the Universal Data Tool directly from a web browser or
-                      with a Windows, Mac or Linux desktop application.
+                      Each team member has their own login and role. Easily add
+                      team member and change roles as your team scales.
                     </ItemDescription>
                   </Item>
                   <Item>
-                    <ItemHeader>Real-time Collaboration</ItemHeader>
+                    <ItemHeader>Dataset Browsing</ItemHeader>
                     <ItemDescription>
-                      Join a link to a collaborative session and see dataset
-                      samples from team members complete in real time.
+                      No need to manage links. Your team can browse and select
+                      the dataset to work on.
                     </ItemDescription>
                   </Item>
                   <Item>
-                    <ItemHeader>Easy Import from AWS</ItemHeader>
+                    <ItemHeader>Continuous Backups</ItemHeader>
                     <ItemDescription>
-                      Import from your S3 buckets easily with IAM or Cognito
-                      authentication.
+                      Every submitted review, label or dataset change is saved
+                      in your database. No need to manage files.
                     </ItemDescription>
                   </Item>
                 </ItemContainer>
@@ -182,39 +207,36 @@ function LandingPage() {
               <Grid item xs={6}></Grid>
             </Grid>
           </CenteredContent>
-          <SampleGridImage src={sampleGridSrc} />
+          <SampleGridImage src={teamImage} />
         </Box>
       </Section2>
       <Section3>
         <CenteredContent>
-          <Category>Community</Category>
-          <SectionHeader>Built Community-First</SectionHeader>
+          <Category>Quality Control</Category>
+          <SectionHeader>
+            Auditable, Controllable, High Quality Labels
+          </SectionHeader>
           <SectionText>
-            Working together, we can accomplish more. The Universal Data Tool
-            was built to bring together the best ideas from different machine
-            learning communities. Check out our{" "}
-            <L href="https://universaldatatool.slack.com">Slack</L>,{" "}
-            <L href="https://github.com/UniversalDataTool/universal-data-tool/blob/master/CONTRIBUTING.md">
-              Contribution Guide
-            </L>{" "}
-            and{" "}
-            <L href="https://www.youtube.com/playlist?list=PLy9z5rqheGWLDN2zWekdzsqZMneQ6eYyJ">
-              Community Update Video Series
-            </L>
-            .
+            Guarantee great labels with visual audit trails, custom quality
+            control parameters and intelligent consensus algorithms.
           </SectionText>
-          <Box textAlign="center" paddingTop="96px" paddingBottom="96px">
-            <iframe
-              width="711"
-              height="400"
-              src="https://www.youtube.com/embed/uQ1ITe88TM8"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </Box>
         </CenteredContent>
-        <Box height={60} />
+        <Box
+          position="relative"
+          textAlign="center"
+          // mt="96px"
+          overflow="hidden"
+          // mb="96px"
+          height="520px"
+        >
+          <CenteredContent>
+            <Box position="relative">
+              <ScreenshotRowImg src={screenshot2} />
+              <ScreenshotRowImg src={screenshot5} />
+              <ScreenshotRowImg src={screenshot3} />
+            </Box>
+          </CenteredContent>
+        </Box>
       </Section3>
       <Section2>
         <CenteredContent>
@@ -273,12 +295,25 @@ function LandingPage() {
       </Section2>
       <Section3>
         <CenteredContent>
-          <Category>Jupyter</Category>
-          <SectionHeader>Label data directly in Jupyter Notebook</SectionHeader>
+          <Category>Priority Support</Category>
+          <SectionHeader>
+            Get Devops and Support from UDT Maintainers
+          </SectionHeader>
           <SectionText>
-            Import the Universal Data Tool pip module to label data, create
-            collaborative sessions and transform datasets.
+            Our support team of UDT contributors and maintainers provide
+            priority support and ensure that your deployment and usage is
+            smooth, fast and easy. (We'll also deploy for you if you'd like)
           </SectionText>
+          <Box pt="64px">
+            <HeroButton
+              href="mailto:scale@universaldatatool.com"
+              variant="outlined"
+              className={"useonline"}
+            >
+              <AttachMoneyIcon className="icon" />
+              Get Access
+            </HeroButton>
+          </Box>
         </CenteredContent>
       </Section3>
     </Container>
