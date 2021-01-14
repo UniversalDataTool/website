@@ -160,7 +160,6 @@ function LandingPage() {
               variant="outlined"
               className={"useonline"}
             >
-              <AttachMoneyIcon className="icon" />
               Get Access
             </HeroButton>
           </Box>
@@ -310,7 +309,6 @@ function LandingPage() {
               variant="outlined"
               className={"useonline"}
             >
-              <AttachMoneyIcon className="icon" />
               Get Access
             </HeroButton>
           </Box>
